@@ -105,7 +105,7 @@ Route::prefix('dokter')->middleware(['auth', 'dokter'])->group(function () {
     Route::post('/medical-records', [DokterMedicalRecordController::class, 'store'])->name('dokter.medical-records.store');
     
     // Logout
-    Route::match(['GET', 'POST'], '/logout', [DokterController::class, 'logout'])->name('dokter.logout');
+    Route::post('/logout', [DokterController::class, 'logout'])->name('dokter.logout');
 });
 
 // Patient Routes

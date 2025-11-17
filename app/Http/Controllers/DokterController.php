@@ -112,9 +112,11 @@ class DokterController extends Controller
         return view('dokter.create-medical-record', compact('appointment'));
     }
 
-    public function logout()
+    public function logout(Request $request)
     {
         Auth::logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
         return redirect()->route('admin.login.show')->with('success', 'Anda berhasil logout.');
     }
 }
