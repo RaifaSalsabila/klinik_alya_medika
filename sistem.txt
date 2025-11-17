@@ -1,0 +1,76 @@
+Konsep Sistem SIM Klinik Alya Medika
+Halo, berikut detail sistem yang akan dikembangkan untuk SIM Klinik Alya Medika.
+Sistem ini hanya memiliki 2 role pengguna utama: Admin dan Pasien.
+(Dokter tidak punya login sendiri — semua tugas dokter dikerjakan oleh admin.)
+________________________________________
+🎯 Tujuan Sistem
+Sistem digunakan untuk mengelola kegiatan pelayanan di klinik Alya Medika mulai dari pendaftaran pasien, appointment, pemeriksaan, hingga pencetakan invoice dan laporan klinik.
+
+- sistem antrian dari appointment(bisa dilihat di appointment admin dan pasien),
+- ⁠status jika perlu rawat inap: tampilan surat rujukan (bisa diakses admin& pasien)
+- ⁠status jika perlu rawat jalan: tampilan resep obat(bisa diakses admin dan pasien)
+- regis pasien ada NIK jugaa, nnti di appointment ga perlu lagi, krn akun nya udh include NIK
+
+________________________________________
+👥 Role dan Fungsinya
+1. Pasien
+•	Melakukan registrasi akun (nama, email/nomor HP, password).
+•	Login dengan email/nomor HP dan password.
+•	Edit profil akun (nama, alamat, nomor HP, password).
+•	Melihat informasi dokter (nama, poli, jadwal praktik).
+•	Mendaftar appointment berdasarkan jadwal dokter yang tersedia.
+•	Melihat nomor antrian sesuai urutan pendaftaran untuk jadwal tersebut.
+•	Melihat status appointment (Menunggu, Diterima, Selesai, atau Batal).
+•	Melihat riwayat pemeriksaan dan hasilnya (resep obat atau surat rujukan).
+•	Melihat invoice biaya layanan setelah selesai berobat.
+________________________________________
+2. Admin (termasuk tugas dokter)
+•	Login dengan username dan password (akun dibuat dari sistem).
+•	Kelola data dokter: tambah, edit, hapus data (nama, poli, jadwal praktik).
+•	Melihat daftar appointment pasien dan nomor antrian.
+•	Mengubah status appointment (Menunggu → Diterima → Selesai/Batal).
+•	Menginput rekam medis pasien meliputi:
+o	Keluhan
+o	Diagnosa
+o	Resep obat
+o	Tindakan
+o	Jenis pelayanan (Rawat Jalan / Rawat Inap)
+•	Jika pasien Rawat Jalan, sistem otomatis menampilkan & bisa cetak Resep Dokter (PDF).
+•	Jika pasien Rawat Inap, sistem otomatis menampilkan & bisa cetak Surat Rujukan Rawat Inap (PDF).
+•	Mencatat biaya layanan (biaya konsultasi, obat, tindakan) → sistem hitung total otomatis.
+•	Mencetak invoice biaya layanan (PDF) untuk pasien.
+•	Mengunduh laporan (jadwal dokter, kunjungan pasien, total biaya).
+________________________________________
+🔁 Alur Sistem (Flow Sederhana)
+1.	Pasien daftar akun → login.
+2.	Pasien lihat daftar dokter & jadwal praktik.
+3.	Pasien pilih dokter dan jadwal → daftar appointment.
+4.	Sistem berikan nomor antrian otomatis sesuai urutan pendaftaran.
+5.	Admin melihat daftar appointment dan nomor antrian.
+6.	Pasien datang ke klinik → admin ubah status appointment menjadi Selesai.
+7.	Admin isi rekam medis (Rawat Jalan / Rawat Inap):
+o	Jika Rawat Jalan → sistem buat resep dokter (PDF).
+o	Jika Rawat Inap → sistem buat surat rujukan rawat inap (PDF).
+8.	Admin isi biaya layanan → cetak invoice (PDF).
+9.	Pasien bisa lihat hasil pemeriksaan, resep/rujukan, dan invoice di akunnya.
+10.	Admin bisa buat laporan klinik berdasarkan tanggal / periode.
+________________________________________
+📄 Output Sistem
+1.	Resep Dokter (PDF) – untuk pasien rawat jalan.
+2.	Surat Rujukan Rawat Inap (PDF) – untuk pasien yang perlu rawat inap.
+3.	Invoice Biaya Layanan (PDF).
+4.	Laporan Klinik (PDF) – jadwal dokter & data kunjungan pasien.
+________________________________________
+💻 Rekomendasi Teknologi
+•	Backend: Laravel
+•	Frontend: Bootstrap / Tailwind CSS
+•	Database: MySQL
+•	PDF Generator: barryvdh/laravel-dompdf
+________________________________________
+🎯 Catatan Tambahan
+•	Nomor antrian dibuat otomatis berdasarkan urutan pendaftaran per jadwal dokter.
+•	Dokter tidak login ke sistem — semua aktivitas dokter dilakukan oleh admin.
+•	Semua hasil pemeriksaan dan dokumen bisa dilihat juga oleh pasien di halaman riwayat.
+________________________________________
+Apakah kamu mau saya bantu sekalian buatkan diagram alur (flowchart) dari sistem ini biar programmer lebih cepat paham strukturnya secara visual juga?
+

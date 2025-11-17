@@ -1,5 +1,5 @@
 /vendor/
-node_modules/
+/node_modules/
 npm-debug.log
 yarn-error.log
 
@@ -15,16 +15,27 @@ public/hot
 public_html/storage
 public_html/hot
 
-storage/*.key
+# General ignores
+*.log
+.DS_Store
 .env
-Homestead.yaml
-Homestead.json
-/.vagrant
-.phpunit.result.cache
-
-/public/build
-/storage/pail
 .env.backup
 .env.production
 .phpactor.json
-auth.json
+.phpunit.result.cache
+/.fleet
+/.idea
+/.nova
+/.phpunit.cache
+/.vscode
+/.zed
+/auth.json
+/storage/*.key
+/storage/pail
+/public/build
+Thumbs.db
+
+# Homestead specific
+Homestead.json
+Homestead.yaml
+/.vagrant
