@@ -39,3 +39,15 @@ Thumbs.db
 Homestead.json
 Homestead.yaml
 /.vagrant
+
+# Laravel cache & compiled files
+/bootstrap/cache/*.php
+
+# Optional local nginx config ignores
+*.local.conf
+*.dev.conf
+*.bak
+
+# Laragon runtime files
+*.pid
+*.tmp
