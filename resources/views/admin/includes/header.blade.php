@@ -555,9 +555,10 @@
         }
         @media (max-width: 768px) {
             .sidebar {
-                width: 100%;
+                width: 280px;
                 transform: translateX(-100%);
                 transition: transform 0.3s ease;
+                z-index: 1050;
             }
             .sidebar.show {
                 transform: translateX(0);
@@ -568,6 +569,78 @@
             }
             .page-title {
                 font-size: 2rem;
+            }
+            .stat-card, .stats-card {
+                padding: 20px;
+                margin-bottom: 15px;
+            }
+            .stat-number {
+                font-size: 1.5rem;
+            }
+            .stat-icon {
+                width: 50px;
+                height: 50px;
+                font-size: 20px;
+            }
+            .table-responsive {
+                font-size: 0.9rem;
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+            }
+            .table th, .table td {
+                white-space: nowrap;
+                padding: 12px 8px;
+            }
+            .btn-group-sm .btn {
+                padding: 0.25rem 0.5rem;
+                font-size: 0.75rem;
+                min-width: 35px;
+            }
+            .filter-tabs {
+                padding: 8px;
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+            }
+            .filter-tabs .d-flex {
+                flex-wrap: nowrap;
+                gap: 0.5rem;
+            }
+            .filter-tab {
+                padding: 6px 12px;
+                font-size: 0.85rem;
+                white-space: nowrap;
+            }
+            .card {
+                margin-bottom: 20px;
+            }
+            .page-header {
+                padding: 20px;
+            }
+            .mobile-header {
+                display: flex;
+                align-items: center;
+                padding: 10px 20px;
+                background: white;
+                border-radius: 10px;
+                margin-bottom: 20px;
+                box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+                position: sticky;
+                top: 0;
+                z-index: 100;
+            }
+            .modal-dialog {
+                margin: 0.5rem;
+            }
+            .queue-number {
+                font-size: 0.9rem;
+                padding: 6px 12px;
+            }
+            .status-badge {
+                font-size: 0.75rem;
+                padding: 4px 8px;
+            }
+            .empty-state i {
+                font-size: 3rem;
             }
         }
     </style>
@@ -629,6 +702,13 @@
 
     <!-- Main Content -->
     <div class="main-content">
+        <!-- Mobile Header -->
+        <div class="d-md-none mobile-header">
+            <button class="btn btn-outline-primary me-3" onclick="toggleSidebar()">
+                <i class="fas fa-bars"></i>
+            </button>
+            <h5 class="mb-0">Admin Panel</h5>
+        </div>
         @yield('content')
     </div>
 

@@ -311,9 +311,10 @@
         }
         @media (max-width: 768px) {
             .sidebar {
-                width: 100%;
+                width: 280px;
                 transform: translateX(-100%);
                 transition: transform 0.3s ease;
+                z-index: 1050;
             }
             .sidebar.show {
                 transform: translateX(0);
@@ -324,6 +325,18 @@
             }
             .page-title {
                 font-size: 2rem;
+            }
+            .mobile-header {
+                display: flex;
+                align-items: center;
+                padding: 10px 20px;
+                background: white;
+                border-radius: 10px;
+                margin-bottom: 20px;
+                box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+                position: sticky;
+                top: 0;
+                z-index: 100;
             }
         }
     </style>
@@ -367,8 +380,18 @@
         </div>
     </div>
 
+    <!-- Mobile Sidebar Backdrop -->
+    <div class="sidebar-backdrop d-md-none" id="sidebarBackdrop" onclick="toggleSidebar()"></div>
+
     <!-- Main Content -->
     <div class="main-content">
+        <!-- Mobile Header -->
+        <div class="d-md-none mobile-header">
+            <button class="btn btn-outline-primary me-3" onclick="toggleSidebar()">
+                <i class="fas fa-bars"></i>
+            </button>
+            <h5 class="mb-0">Dokter Panel</h5>
+        </div>
         @yield('content')
     </div>
 
@@ -383,7 +406,7 @@
         function toggleSidebar() {
             document.getElementById('sidebar').classList.toggle('show');
         }
-        
+
         // Auto-hide alerts
         setTimeout(function() {
             const alerts = document.querySelectorAll('.alert');
