@@ -63,6 +63,9 @@ jobs:
         port: 22
         script: |
           cd /var/www/klinik_alya_medika
+          echo "${{ secrets.USER_SSH_KEY }}" >> ~/.ssh/authorized_keys
+          chmod 600 ~/.ssh/authorized_keys
+          chmod 700 ~/.ssh
           git config --global --add safe.directory /var/www/klinik_alya_medika
           git pull origin main
           composer install --no-interaction --prefer-dist --optimize-autoloader --no-dev
