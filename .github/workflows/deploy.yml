@@ -13,16 +13,14 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v4
 
-    - name: Setup SSH
-      run: |
-        mkdir -p ~/.ssh
-        echo "${{ secrets.VPS_SSH_KEY }}" > ~/.ssh/deploy_key
-        chmod 600 ~/.ssh/deploy_key
-        ssh-keyscan -H ${{ secrets.VPS_HOST }} >> ~/.ssh/known_hosts
-
-    - name: Deploy to VPS
-      run: |
-        ssh -i ~/.ssh/deploy_key -o StrictHostKeyChecking=no ${{ secrets.VPS_USERNAME }}@${{ secrets.VPS_HOST }} << 'EOF'
+    - name: Deploy to VPS via SSH
+      uses: appleboy/ssh-action@v1.0.3
+      with:
+        host: ${{ secrets.VPS_HOST }}
+        username: ${{ secrets.VPS_USERNAME }}
+        key: ${{ secrets.VPS_SSH_KEY }}
+        port: 22
+        script: |
           cd /var/www/klinik_alya_medika
           git config --global --add safe.directory /var/www/klinik_alya_medika
           sudo git pull origin main
@@ -40,7 +38,6 @@ jobs:
           sudo chmod -R 775 /var/www/klinik_alya_medika/bootstrap/cache
           sudo systemctl restart php8.3-fpm
           sudo systemctl restart nginx
-        EOF
 
     - name: Deployment Status
       if: success()
