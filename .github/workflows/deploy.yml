@@ -44,16 +44,6 @@ jobs:
     if: github.ref == 'refs/heads/main'
 
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v4
-
-    - name: Setup SSH Key
-      run: |
-        mkdir -p ~/.ssh
-        echo "${{ secrets.VPS_SSH_KEY }}" > ~/.ssh/deploy_key
-        chmod 600 ~/.ssh/deploy_key
-        ssh-keyscan -H ${{ secrets.VPS_HOST }} >> ~/.ssh/known_hosts
-
     - name: Deploy to VPS
       uses: appleboy/ssh-action@v1.0.3
       with:
@@ -63,23 +53,29 @@ jobs:
         port: 22
         script: |
           cd /var/www/klinik_alya_medika
-          echo "${{ secrets.USER_SSH_KEY }}" >> ~/.ssh/authorized_keys
-          chmod 600 ~/.ssh/authorized_keys
-          chmod 700 ~/.ssh
-          git config --global --add safe.directory /var/www/klinik_alya_medika
-          git pull origin main
-          composer install --no-interaction --prefer-dist --optimize-autoloader --no-dev
-          npm ci
-          npm run build
-          php artisan migrate --force
-          php artisan config:clear
-          php artisan cache:clear
-          php artisan route:clear
-          php artisan view:clear
-          php artisan config:cache
-          php artisan route:cache
-          php artisan view:cache
-          chmod -R 775 storage bootstrap/cache
-          chown -R www-data:www-data storage bootstrap/cache
+
+          # Fix git ownership
+          sudo git config --global --add safe.directory /var/www/klinik_alya_medika
+
+          # Pull latest code
+          sudo git pull origin main
+
+          # Install dependencies
+          sudo composer install --no-interaction --prefer-dist --optimize-autoloader --no-dev
+          sudo npm ci
+          sudo npm run build
+
+          # Run Laravel commands
+          sudo php artisan migrate --force
+          sudo php artisan config:cache
+          sudo php artisan route:cache
+          sudo php artisan view:cache
+
+          # Fix permissions
+          sudo chmod -R 775 storage bootstrap/cache
+          sudo chown -R www-data:www-data storage bootstrap/cache
+
+          # Restart PHP-FPM
           sudo systemctl restart php8.3-fpm
-          echo "Deployment completed successfully!"
+
+          echo "✅ Deployment completed successfully!"
