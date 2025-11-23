@@ -1002,7 +1002,7 @@
                         <span class="gradient-text">Klinik Alya Medika</span>
                     </h1>
                     <p class="subtitle">
-                        Sistem Informasi Manajemen Klinik Terintegrasi - CI/CD Test Deployment Version 1.0
+                        Sistem Informasi Manajemen Klinik Terintegrasi
                     </p>
 
                     <div class="cta-buttons">
