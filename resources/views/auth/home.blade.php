@@ -1028,7 +1028,7 @@
     <section class="features-section" id="features">
         <div class="container">
             <div class="section-header">
-                <h2 class="section-title">Mengapa Memilih Kami?</h2>
+                <h2 class="section-title">Mengapa Memilih Kami bang?</h2>
                 <p class="section-subtitle">
                     Pelayanan Terbaik untuk Kesehatan Anda dan Keluarga
                 </p>
