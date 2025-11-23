@@ -979,11 +979,11 @@
             <div class="hero-content">
                 <div class="hero-text">
                     <h1 class="main-title">
-                        Selamat Datang di<br>
+                        Welcome to<br>
                         <span class="gradient-text">Klinik Alya Medika</span>
                     </h1>
                     <p class="subtitle">
-                        Sistem Informasi Manajemen Klinik Terintegrasi yang memudahkan Anda mengakses layanan kesehatan dengan teknologi modern dan pelayanan terbaik.
+                        Sistem Informasi Manajemen Klinik Terintegrasi - CI/CD Test Deployment Version 1.0
                     </p>
                     
                     <div class="cta-buttons">
