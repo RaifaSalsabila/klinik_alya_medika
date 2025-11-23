@@ -53,26 +53,22 @@ jobs:
         echo "${{ secrets.VPS_SSH_KEY }}" > ~/.ssh/deploy_key
         chmod 600 ~/.ssh/deploy_key
         ssh-keyscan -H ${{ secrets.VPS_HOST }} >> ~/.ssh/known_hosts
-        
+
     - name: Deploy to VPS
-      run: |
-        ssh -i ~/.ssh/deploy_key -o StrictHostKeyChecking=no -p ${{ secrets.VPS_PORT }} ${{ secrets.VPS_USERNAME }}@${{ secrets.VPS_HOST }} 'bash -s' << 'ENDSSH'
-          cd ${{ secrets.VPS_PROJECT_PATH }}
-
-          # Pull latest code
+      uses: appleboy/ssh-action@v1.0.3
+      with:
+        host: ${{ secrets.VPS_HOST }}
+        username: ${{ secrets.VPS_USERNAME }}
+        key: ${{ secrets.VPS_SSH_KEY }}
+        port: 22
+        script: |
+          cd /var/www/klinik_alya_medika
+          git config --global --add safe.directory /var/www/klinik_alya_medika
           git pull origin main
-
-          # Install/update composer dependencies
           composer install --no-interaction --prefer-dist --optimize-autoloader --no-dev
-
-          # Install/update NPM dependencies and build assets
           npm ci
           npm run build
-
-          # Run migrations
           php artisan migrate --force
-
-          # Clear and cache configurations
           php artisan config:clear
           php artisan cache:clear
           php artisan route:clear
@@ -80,13 +76,7 @@ jobs:
           php artisan config:cache
           php artisan route:cache
           php artisan view:cache
-
-          # Set proper permissions
           chmod -R 775 storage bootstrap/cache
           chown -R www-data:www-data storage bootstrap/cache
-
-          # Restart PHP-FPM (adjust service name if needed)
-          sudo systemctl restart php8.3-fpm || sudo systemctl restart php-fpm
-
+          sudo systemctl restart php8.3-fpm
           echo "Deployment completed successfully!"
-        ENDSSH
