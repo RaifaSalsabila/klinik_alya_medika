@@ -71,7 +71,7 @@ class PatientSeeder extends Seeder
 
         foreach ($patients as $patientData) {
             $patient = User::create($patientData);
-            
+
             // Create appointments for each patient
             $this->createAppointments($patient);
         }
@@ -80,15 +80,15 @@ class PatientSeeder extends Seeder
     private function createAppointments($patient)
     {
         $doctors = \App\Models\Doctor::all();
-        
+
         if ($doctors->count() > 0) {
             // Create 2-3 appointments per patient
             $appointmentCount = rand(2, 3);
-            
+
             for ($i = 0; $i < $appointmentCount; $i++) {
                 $doctor = $doctors->random();
                 $appointmentDate = now()->subDays(rand(1, 30));
-                
+
                 $appointment = Appointment::create([
                     'patient_id' => $patient->id,
                     'doctor_id' => $doctor->id,
@@ -110,7 +110,7 @@ class PatientSeeder extends Seeder
     private function createMedicalRecord($appointment)
     {
         $serviceType = ['rawat_jalan', 'rawat_inap'][rand(0, 1)];
-        
+
         $medicalRecord = MedicalRecord::create([
             'appointment_id' => $appointment->id,
             'patient_id' => $appointment->patient_id,
@@ -193,7 +193,7 @@ class PatientSeeder extends Seeder
             'Ruam kulit dan gatal-gatal',
             'Sakit gigi dan gusi bengkak'
         ];
-        
+
         return $complaints[array_rand($complaints)];
     }
 
@@ -211,7 +211,7 @@ class PatientSeeder extends Seeder
             'Bronkitis akut',
             'Gangguan kecemasan'
         ];
-        
+
         return $diagnoses[array_rand($diagnoses)];
     }
 
@@ -229,7 +229,7 @@ class PatientSeeder extends Seeder
             'Inhalasi dan ekspektoran',
             'Konseling dan terapi relaksasi'
         ];
-        
+
         return $treatments[array_rand($treatments)];
     }
 
@@ -242,7 +242,7 @@ class PatientSeeder extends Seeder
             'Omeprazole 20mg 1x1 sehari sebelum makan',
             'Metformin 500mg 2x1 sehari setelah makan'
         ];
-        
+
         return $prescriptions[array_rand($prescriptions)];
     }
 
@@ -280,7 +280,7 @@ class PatientSeeder extends Seeder
                 'instructions' => '2x1 sehari setelah makan'
             ]
         ];
-        
+
         return array_slice($medicines, 0, rand(1, 3));
     }
 
@@ -296,7 +296,7 @@ class PatientSeeder extends Seeder
             'RS Mayapada Jakarta',
             'RS Hermina Kemayoran'
         ];
-        
+
         return $hospitals[array_rand($hospitals)];
     }
 
@@ -309,7 +309,7 @@ class PatientSeeder extends Seeder
             'Memerlukan konsultasi dengan spesialis lain',
             'Kondisi kritis yang memerlukan perawatan khusus'
         ];
-        
+
         return $reasons[array_rand($reasons)];
     }
 }
