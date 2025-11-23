@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -24,7 +25,7 @@
 
         /* Sidebar */
         .sidebar {
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            background: linear-gradient(180deg, var(--primary-color), var(--secondary-color));
             min-height: 100vh;
             position: fixed;
             top: 0;
@@ -32,48 +33,163 @@
             width: 280px;
             z-index: 1000;
             transition: all 0.3s ease;
+            box-shadow: 4px 0 30px rgba(0, 0, 0, 0.15);
+            overflow-y: auto;
+            overflow-x: hidden;
+        }
+
+        .sidebar::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .sidebar::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .sidebar::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+        }
+
+        .sidebar::-webkit-scrollbar-thumb:hover {
+            background: rgba(255, 255, 255, 0.3);
         }
 
         .sidebar-header {
-            padding: 1.5rem;
-            border-bottom: 1px solid rgba(255,255,255,0.1);
+            padding: 25px 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         .sidebar-brand {
             color: white;
             text-decoration: none;
-            font-size: 1.5rem;
+            font-size: 1.1rem;
             font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .sidebar-brand i {
+            width: 50px;
+            height: 50px;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+
+        .sidebar-user {
+            padding: 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .sidebar-user-info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .sidebar-user-avatar {
+            width: 45px;
+            height: 45px;
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            color: white;
+            font-weight: 700;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .sidebar-user-details h6 {
+            color: white;
+            margin: 0;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .sidebar-user-details small {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.75rem;
         }
 
         .sidebar-nav {
-            padding: 1rem 0;
+            padding: 15px 0;
+        }
+
+        .menu-section {
+            margin-bottom: 25px;
+        }
+
+        .menu-section-title {
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 0 20px;
+            margin-bottom: 10px;
         }
 
         .nav-item {
-            margin: 0.25rem 1rem;
+            margin: 0;
         }
 
         .nav-link {
-            color: rgba(255,255,255,0.8);
-            padding: 0.75rem 1rem;
-            border-radius: 10px;
-            transition: all 0.3s ease;
+            color: rgba(255, 255, 255, 0.85);
+            padding: 12px 20px;
+            border-radius: 0;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             display: flex;
             align-items: center;
             text-decoration: none;
+            gap: 12px;
+            font-weight: 500;
+            font-size: 0.9rem;
+            border-left: 3px solid transparent;
         }
 
-        .nav-link:hover,
+        .nav-link:hover {
+            color: white;
+            background: rgba(255, 255, 255, 0.1);
+            border-left-color: white;
+            padding-left: 25px;
+        }
+
         .nav-link.active {
             color: white;
-            background: rgba(255,255,255,0.1);
-            transform: translateX(5px);
+            background: rgba(255, 255, 255, 0.15);
+            border-left-color: white;
+            font-weight: 600;
         }
 
         .nav-link i {
             width: 20px;
-            margin-right: 0.75rem;
+            text-align: center;
+            font-size: 1.1rem;
+        }
+
+        .menu-badge {
+            margin-left: auto;
+            background: rgba(255, 255, 255, 0.25);
+            color: white;
+            font-size: 0.7rem;
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-weight: 700;
+        }
+
+        .nav-link.active .menu-badge {
+            background: white;
+            color: var(--primary-color);
         }
 
         /* Main Content */
@@ -86,7 +202,7 @@
         .topbar {
             background: white;
             padding: 1rem 2rem;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
             display: flex;
             justify-content: between;
             align-items: center;
@@ -102,7 +218,7 @@
             border-radius: 15px;
             padding: 2rem;
             margin-bottom: 2rem;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
         }
 
         .page-title {
@@ -120,13 +236,13 @@
         .card {
             border: none;
             border-radius: 15px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
             transition: all 0.3s ease;
         }
 
         .card:hover {
             transform: translateY(-2px);
-            box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
         }
 
         .card-header {
@@ -147,14 +263,14 @@
             background: white;
             border-radius: 15px;
             padding: 1.5rem;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
             transition: all 0.3s ease;
             border-left: 4px solid var(--primary-color);
         }
 
         .stat-card:hover {
             transform: translateY(-2px);
-            box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
         }
 
         .stat-icon {
@@ -284,82 +400,82 @@
             }
         }
 
-            .topbar {
-                padding: 1rem;
-            }
+        .topbar {
+            padding: 1rem;
+        }
 
-            .content {
-                padding: 1rem;
-            }
+        .content {
+            padding: 1rem;
+        }
 
-            .page-header {
-                padding: 1.5rem;
-                margin-bottom: 1rem;
-            }
+        .page-header {
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+        }
 
-            .page-title {
-                font-size: 1.5rem;
-            }
+        .page-title {
+            font-size: 1.5rem;
+        }
 
-            .page-subtitle {
-                font-size: 0.9rem;
-            }
+        .page-subtitle {
+            font-size: 0.9rem;
+        }
 
-            .stat-card {
-                padding: 1rem;
-                margin-bottom: 1rem;
-            }
+        .stat-card {
+            padding: 1rem;
+            margin-bottom: 1rem;
+        }
 
-            .stat-number {
-                font-size: 1.5rem;
-            }
+        .stat-number {
+            font-size: 1.5rem;
+        }
 
-            .stat-label {
-                font-size: 0.8rem;
-            }
+        .stat-label {
+            font-size: 0.8rem;
+        }
 
-            .card {
-                margin-bottom: 1rem;
-            }
+        .card {
+            margin-bottom: 1rem;
+        }
 
-            .card-header {
-                padding: 1rem;
-            }
+        .card-header {
+            padding: 1rem;
+        }
 
-            .card-body {
-                padding: 1rem;
-            }
+        .card-body {
+            padding: 1rem;
+        }
 
-            .btn {
-                padding: 0.5rem 1rem;
-                font-size: 0.9rem;
-            }
+        .btn {
+            padding: 0.5rem 1rem;
+            font-size: 0.9rem;
+        }
 
-            .table {
-                font-size: 0.8rem;
-            }
+        .table {
+            font-size: 0.8rem;
+        }
 
-            .table thead th,
-            .table tbody td {
-                padding: 0.5rem;
-            }
+        .table thead th,
+        .table tbody td {
+            padding: 0.5rem;
+        }
 
-            .user-info {
-                gap: 0.5rem;
-            }
+        .user-info {
+            gap: 0.5rem;
+        }
 
-            .user-avatar {
-                width: 35px;
-                height: 35px;
-            }
+        .user-avatar {
+            width: 35px;
+            height: 35px;
+        }
 
-            .user-details h6 {
-                font-size: 0.9rem;
-            }
+        .user-details h6 {
+            font-size: 0.9rem;
+        }
 
-            .user-details small {
-                font-size: 0.8rem;
-            }
+        .user-details small {
+            font-size: 0.8rem;
+        }
         }
 
         @media (max-width: 576px) {
@@ -493,70 +609,132 @@
         }
     </style>
 </head>
+
 <body>
     <!-- Sidebar -->
     <div class="sidebar">
+        <!-- Brand -->
         <div class="sidebar-header">
             <a href="{{ route('patient.dashboard') }}" class="sidebar-brand">
-                <i class="fas fa-hospital me-2"></i>
-                Klinik Alya Medika
+                <i class="fas fa-hospital"></i>
+                <div>
+                    <div style="font-size: 1.1rem; font-weight: 700;">Klinik Alya Medika</div>
+                    <small style="font-size: 0.75rem; color: rgba(255,255,255,0.7);">Portal Pasien</small>
+                </div>
             </a>
         </div>
-        
+
+        <!-- User Profile -->
+        <div class="sidebar-user">
+            <div class="sidebar-user-info">
+                <div class="sidebar-user-avatar">
+                    {{ strtoupper(substr(Auth::user()->name, 0, 1)) }}
+                </div>
+                <div class="sidebar-user-details">
+                    <h6>{{ Auth::user()->name }}</h6>
+                    <small><i class="fas fa-circle text-success me-1" style="font-size: 0.5rem;"></i> Online</small>
+                </div>
+            </div>
+        </div>
+
         <nav class="sidebar-nav">
-            <div class="nav-item">
-                <a href="{{ route('patient.dashboard') }}" class="nav-link {{ request()->routeIs('patient.dashboard') ? 'active' : '' }}">
-                    <i class="fas fa-tachometer-alt"></i>
-                    Dashboard
-                </a>
+            <!-- Dashboard Section -->
+            <div class="menu-section">
+                <div class="menu-section-title">Dashboard</div>
+                <div class="nav-item">
+                    <a href="{{ route('patient.dashboard') }}"
+                        class="nav-link {{ request()->routeIs('patient.dashboard') ? 'active' : '' }}">
+                        <i class="fas fa-tachometer-alt"></i>
+                        <span>Overview</span>
+                    </a>
+                </div>
             </div>
-            
-            <div class="nav-item">
-                <a href="{{ route('patient.appointments') }}" class="nav-link {{ request()->routeIs('patient.appointments*') ? 'active' : '' }}">
-                    <i class="fas fa-calendar-alt"></i>
-                    Janji Temu
-                </a>
+
+            <!-- Appointment Section -->
+            <div class="menu-section">
+                <div class="menu-section-title">Layanan</div>
+                <div class="nav-item">
+                    <a href="{{ route('patient.appointments') }}"
+                        class="nav-link {{ request()->routeIs('patient.appointments*') ? 'active' : '' }}">
+                        <i class="fas fa-calendar-check"></i>
+                        <span>Janji Temu</span>
+                        @php
+                            $upcomingAppointments = \App\Models\Appointment::where('patient_id', Auth::id())
+                                ->whereDate('appointment_date', '>=', today())
+                                ->whereIn('status', ['menunggu', 'diterima'])
+                                ->count();
+                        @endphp
+                        @if ($upcomingAppointments > 0)
+                            <span class="menu-badge">{{ $upcomingAppointments }}</span>
+                        @endif
+                    </a>
+                </div>
+
+                <div class="nav-item">
+                    <a href="{{ route('patient.doctor-schedule') }}"
+                        class="nav-link {{ request()->routeIs('patient.doctor-schedule') ? 'active' : '' }}">
+                        <i class="fas fa-user-md"></i>
+                        <span>Jadwal Dokter</span>
+                    </a>
+                </div>
             </div>
-            
-            <div class="nav-item">
-                <a href="{{ route('patient.doctor-schedule') }}" class="nav-link {{ request()->routeIs('patient.doctor-schedule') ? 'active' : '' }}">
-                    <i class="fas fa-user-md"></i>
-                    Jadwal Dokter
-                </a>
+
+            <!-- Medical Section -->
+            <div class="menu-section">
+                <div class="menu-section-title">Medis & Keuangan</div>
+                <div class="nav-item">
+                    <a href="{{ route('patient.history') }}"
+                        class="nav-link {{ request()->routeIs('patient.history') ? 'active' : '' }}">
+                        <i class="fas fa-file-medical-alt"></i>
+                        <span>Riwayat Medis</span>
+                    </a>
+                </div>
+
+                <div class="nav-item">
+                    <a href="{{ route('patient.invoices') }}"
+                        class="nav-link {{ request()->routeIs('patient.invoices') ? 'active' : '' }}">
+                        <i class="fas fa-file-invoice-dollar"></i>
+                        <span>Invoice</span>
+                        @php
+                            $unpaidInvoices = \App\Models\Invoice::whereHas('medicalRecord', function ($q) {
+                                $q->where('patient_id', Auth::id());
+                            })
+                                ->where('status', 'belum_bayar')
+                                ->count();
+                        @endphp
+                        @if ($unpaidInvoices > 0)
+                            <span class="menu-badge">{{ $unpaidInvoices }}</span>
+                        @endif
+                    </a>
+                </div>
             </div>
-            
-            <div class="nav-item">
-                <a href="{{ route('patient.history') }}" class="nav-link {{ request()->routeIs('patient.history') ? 'active' : '' }}">
-                    <i class="fas fa-file-medical"></i>
-                    Riwayat Medis
-                </a>
-            </div>
-            
-            <div class="nav-item">
-                <a href="{{ route('patient.invoices') }}" class="nav-link {{ request()->routeIs('patient.invoices') ? 'active' : '' }}">
-                    <i class="fas fa-file-invoice"></i>
-                    Invoice
-                </a>
-            </div>
-            
-            <div class="nav-item">
-                <a href="{{ route('patient.profile') }}" class="nav-link {{ request()->routeIs('patient.profile') ? 'active' : '' }}">
-                    <i class="fas fa-user"></i>
-                    Profil
-                </a>
-            </div>
-            
-            <div class="nav-item mt-4">
-                <form method="POST" action="{{ route('patient.logout') }}">
-                    @csrf
-                    <button type="submit" class="nav-link w-100 text-start" style="background: none; border: none;">
+
+            <!-- Account Section -->
+            <div class="menu-section">
+                <div class="menu-section-title">Akun</div>
+                <div class="nav-item">
+                    <a href="{{ route('patient.profile') }}"
+                        class="nav-link {{ request()->routeIs('patient.profile') ? 'active' : '' }}">
+                        <i class="fas fa-user-circle"></i>
+                        <span>Profil Saya</span>
+                    </a>
+                </div>
+
+                <div class="nav-item">
+                    <a href="#" class="nav-link"
+                        onclick="event.preventDefault(); document.getElementById('patient-logout-form').submit();">
                         <i class="fas fa-sign-out-alt"></i>
-                        Logout
-                    </button>
-                </form>
+                        <span>Logout</span>
+                    </a>
+                </div>
             </div>
         </nav>
     </div>
+
+    <!-- Logout Form -->
+    <form id="patient-logout-form" action="{{ route('patient.logout') }}" method="POST" style="display: none;">
+        @csrf
+    </form>
 
     <!-- Main Content -->
     <div class="main-content">
@@ -619,4 +797,5 @@
     </script>
     @yield('scripts')
 </body>
+
 </html>
