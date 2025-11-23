@@ -1,10 +1,22 @@
-<<<<<<< HEAD
+<p align="center"><b>Project Skripsi S1 Sistem Informasi</b><br>
+<b>Jurusan Ilmu Komputer, Universitas Riau</b></p>
 
-# klik_alya_medika
+<p align="center">Sistem Deteksi Kemiripan Abstrak Tugas Akhir berbasis <b>Vector Space Model (VSM)</b>, <b>Cosine Similarity</b>, dan <b>Library Sastrawi</b> untuk Bahasa Indonesia.</p>
 
-Test CI/CD push: 2025-11-23 22:00 WIB
-=======
+---
 
+## Tentang Project
+
+Repositori ini merupakan bagian dari tugas akhir/skripsi mahasiswa S1 Sistem Informasi, Jurusan Ilmu Komputer, Universitas Riau. Sistem ini dirancang untuk membantu mahasiswa dan dosen dalam mendeteksi tingkat kemiripan teks pada abstrak tugas akhir secara otomatis dan transparan.
+
+### Fitur Utama
+
+- Deteksi kemiripan dokumen menggunakan algoritma VSM dan Cosine Similarity
+- Preprocessing Bahasa Indonesia dengan library Sastrawi (stemming & stopword removal)
+- Laporan kemiripan detail dan highlight teks mirip
+- Antarmuka modern berbasis Laravel & Tailwind CSS
+
+---
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
 <p align="center">
@@ -66,4 +78,3 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
->>>>>>> b48938f (Initial commit)
