@@ -19,6 +19,7 @@ class DatabaseSeeder extends Seeder
             AdminUserSeeder::class,
             DokterUserSeeder::class,  // User dokter dulu
             DoctorSeeder::class,       // Baru dokter schedule (reference ke user)
+            PatientSeeder::class,
         ]);
     }
 }
