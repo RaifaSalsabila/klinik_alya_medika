@@ -1,49 +1,89 @@
-name: Deploy to VPS
+name: Deploy to Production
 
 on:
   push:
     branches:
       - main
+  workflow_dispatch:
 
 jobs:
-  deploy:
+  build:
     runs-on: ubuntu-latest
 
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
 
-    - name: Deploy to VPS via SSH
+    - name: Setup PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: '8.3'
+        extensions: mbstring, xml, ctype, iconv, intl, pdo_sqlite, dom, filter, gd, json, mbstring, pdo, zip
+        coverage: none
+
+    - name: Install Composer dependencies
+      run: composer install --prefer-dist --no-interaction --no-dev --optimize-autoloader
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20'
+
+    - name: Install NPM dependencies
+      run: npm ci
+
+    - name: Build assets
+      run: npm run build
+
+    - name: Build Success
+      run: echo "✅ Build completed successfully!"
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Deploy to VPS
       uses: appleboy/ssh-action@v1.0.3
       with:
         host: ${{ secrets.VPS_HOST }}
         username: ${{ secrets.VPS_USERNAME }}
         key: ${{ secrets.VPS_SSH_KEY }}
-        port: 22
-        command_timeout: 30m
+        port: ${{ secrets.VPS_PORT }}
         script: |
-          cd /var/www/klinik_alya_medika
-          git config --global --add safe.directory /var/www/klinik_alya_medika
-          sudo git pull origin main
-          sudo composer install --no-dev --optimize-autoloader --no-interaction
-          sudo npm install
-          sudo npm run build
-          sudo php artisan config:clear
-          sudo php artisan cache:clear
-          sudo php artisan route:clear
-          sudo php artisan view:clear
-          sudo php artisan migrate --force
-          sudo chown -R www-data:www-data /var/www/klinik_alya_medika
-          sudo chmod -R 755 /var/www/klinik_alya_medika
-          sudo chmod -R 775 /var/www/klinik_alya_medika/storage
-          sudo chmod -R 775 /var/www/klinik_alya_medika/bootstrap/cache
-          sudo systemctl restart php8.3-fpm
-          sudo systemctl restart nginx
+          cd ${{ secrets.VPS_PROJECT_PATH }}
 
-    - name: Deployment Status
-      if: success()
-      run: echo "✅ Deployment successful!"
+          # Pull latest code
+          git pull origin main
 
-    - name: Deployment Failed
-      if: failure()
-      run: echo "❌ Deployment failed!"
+          # Install/update composer dependencies
+          composer install --no-interaction --prefer-dist --optimize-autoloader --no-dev
+
+          # Install/update NPM dependencies and build assets
+          npm ci
+          npm run build
+
+          # Run migrations
+          php artisan migrate --force
+
+          # Clear and cache configurations
+          php artisan config:clear
+          php artisan cache:clear
+          php artisan route:clear
+          php artisan view:clear
+          php artisan config:cache
+          php artisan route:cache
+          php artisan view:cache
+
+          # Set proper permissions
+          chmod -R 775 storage bootstrap/cache
+          chown -R www-data:www-data storage bootstrap/cache
+
+          # Restart PHP-FPM (adjust service name if needed)
+          sudo systemctl restart php8.3-fpm || sudo systemctl restart php-fpm
+
+          echo "Deployment completed successfully!"
