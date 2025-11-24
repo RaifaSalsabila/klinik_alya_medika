@@ -1,4 +1,3 @@
-
 # Klinik Alya Medika
 
 Sistem Informasi Klinik Alya Medika adalah aplikasi web untuk mengelola data pasien, dokter, janji temu, rekam medis, resep, surat rujukan, dan laporan keuangan di lingkungan klinik. Sistem ini dibangun menggunakan Laravel, PHP, MySQL, dan Nginx.
@@ -70,18 +69,6 @@ Pull request dan issue sangat diterima untuk pengembangan lebih lanjut.
 Copyright © Klinik Alya Medika
 
 Repositori ini merupakan bagian dari project Mata Kuliah Proyek Pengembangan Sistem Informasi, S1 Sistem Informasi, Jurusan Ilmu Komputer, Universitas Riau. Sistem ini dirancang untuk membantu pengelolaan data dan proses bisnis di lingkungan klinik secara otomatis dan efisien.
-
-## Fitur Utama
-
-- Manajemen data pasien dan dokter
-- Pendaftaran dan penjadwalan janji temu
-- Rekam medis pasien
-- Pembuatan dan pengelolaan resep obat
-- Pembuatan surat rujukan
-- Laporan riwayat tindakan dan keuangan
-- Autentikasi dan otorisasi multi-user (admin, dokter, pasien)
-- Dashboard dan notifikasi
-- Antarmuka modern berbasis Laravel & Bootstrap
 
 ---
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
