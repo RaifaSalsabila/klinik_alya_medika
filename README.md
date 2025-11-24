@@ -1,11 +1,67 @@
-<p align="center"><b>Project Skripsi S1 Sistem Informasi</b><br>
-<b>Jurusan Ilmu Komputer, Universitas Riau</b></p>
 
-<p align="center">Sistem Deteksi Kemiripan Abstrak Tugas Akhir berbasis <b>Vector Space Model (VSM)</b>, <b>Cosine Similarity</b>, dan <b>Library Sastrawi</b> untuk Bahasa Indonesia.</p>
+# Klinik Alya Medika
+
+Sistem Informasi Klinik Alya Medika adalah aplikasi web untuk mengelola data pasien, dokter, janji temu, rekam medis, resep, surat rujukan, dan laporan keuangan di lingkungan klinik. Sistem ini dibangun menggunakan Laravel, PHP, MySQL, dan Nginx.
 
 ---
 
-## Tentang Project
+## Fitur Utama
+
+- Manajemen data pasien dan dokter
+- Pendaftaran dan penjadwalan janji temu
+- Rekam medis pasien
+- Pembuatan dan pengelolaan resep obat
+- Pembuatan surat rujukan
+- Laporan riwayat tindakan dan keuangan
+- Autentikasi dan otorisasi multi-user (admin, dokter, pasien)
+- Dashboard dan notifikasi
+
+## Teknologi
+
+- Laravel 12.x
+- PHP 8.3
+- MySQL 8.x
+- Nginx
+- Node.js & Vite (frontend build)
+- Bootstrap (UI)
+
+## Cara Deploy & Pengembangan
+
+1. Clone repository:
+	```bash
+	git clone https://github.com/RaifaSalsabila/klinik_alya_medika.git
+	```
+2. Install dependencies:
+	```bash
+	composer install
+	npm ci
+	npm run build
+	```
+3. Copy `.env.example` ke `.env` dan sesuaikan konfigurasi database, mail, dsb.
+4. Generate key:
+	```bash
+	php artisan key:generate
+	```
+5. Jalankan migrasi dan seeder:
+	```bash
+	php artisan migrate --seed
+	```
+6. Jalankan server lokal:
+	```bash
+	php artisan serve
+	```
+
+## CI/CD
+
+Deployment otomatis ke VPS menggunakan GitHub Actions dan SSH key. Setiap push ke branch `main` akan menjalankan workflow build dan deploy ke server production.
+
+## Kontribusi
+
+Pull request dan issue sangat diterima untuk pengembangan lebih lanjut.
+
+---
+
+Copyright © Klinik Alya Medika
 
 Repositori ini merupakan bagian dari tugas akhir/skripsi mahasiswa S1 Sistem Informasi, Jurusan Ilmu Komputer, Universitas Riau. Sistem ini dirancang untuk membantu mahasiswa dan dosen dalam mendeteksi tingkat kemiripan teks pada abstrak tugas akhir secara otomatis dan transparan.
 
