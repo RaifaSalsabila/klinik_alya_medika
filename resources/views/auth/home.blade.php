@@ -1257,7 +1257,7 @@
                 <div class="about-text">
                     <h2>Tentang Klinik Alya Medika</h2>
                     <p>
-                        Klinik Alya Medika adalah klinik kesehatan yang didirikan dengan semangat untuk memberikan
+                        Klinik Alya Medika merupakan klinik kesehatan yang didirikan dengan semangat untuk memberikan
                         perawatan kesehatan yang berkualitas, dengan perhatian penuh pada kenyamanan dan kebutuhan
                         pasien.
                     </p>
