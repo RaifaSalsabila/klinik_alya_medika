@@ -26,7 +26,7 @@
         /* Sidebar */
         .sidebar {
             background: linear-gradient(180deg, var(--primary-color), var(--secondary-color));
-            min-height: 100vh;
+            height: 100vh;
             position: fixed;
             top: 0;
             left: 0;
