@@ -191,12 +191,14 @@
             }
         }
 
-        .sidebar-menu {
-            padding: 20px 0;
-            flex: 1;
-            overflow-y: auto;
-            overflow-x: hidden;
-        }
+.sidebar-menu {
+    padding: 20px 0;
+    flex: 1;
+    overflow-y: auto;
+    overflow-x: hidden;
+    min-height: 0;
+    height: 100%;
+}
 
         .sidebar-menu::-webkit-scrollbar {
             width: 5px;
