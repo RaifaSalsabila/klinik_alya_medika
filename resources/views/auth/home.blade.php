@@ -1262,7 +1262,7 @@
                         pasien.
                     </p>
                     <p>
-                        Kami menyediakan layanan medis dengan dokter yang berpengalaman dan fasilitas yang memadai untuk
+                        Kami menyediakan layanan medis dengan dokter yang berpengalaman dan fasilitas memadai untuk
                         melayani Anda dan keluarga dalam menjaga kesehatan.
                     </p>
                 </div>
