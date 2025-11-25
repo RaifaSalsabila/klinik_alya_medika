@@ -18,7 +18,7 @@
 
         .sidebar {
             background: linear-gradient(180deg, #10b981 0%, #059669 100%);
-            min-height: 100vh;
+            height: 100vh;
             position: fixed;
             top: 0;
             left: 0;
@@ -122,6 +122,7 @@
 
         .sidebar-menu {
             padding: 15px 0;
+            height: 100%;
         }
 
         .menu-section {
