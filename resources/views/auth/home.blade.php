@@ -1137,7 +1137,7 @@
                 <!-- Dr. Ahmad Rahman - Dokter Anak -->
                 <div class="doctor-card">
                     <div class="doctor-header">
-                        <div class="doctor-avatar">SW</div>
+                        <div class="doctor-avatar">MM</div>
                         <div class="doctor-info">
                             <h4>dr. Maria Magdalena</h4>
                             <div class="doctor-specialty">Dokter Umum</div>
@@ -1167,7 +1167,7 @@
                 <!-- Dr. Maria Sari - Dokter Kandungan -->
                 <div class="doctor-card">
                     <div class="doctor-header">
-                        <div class="doctor-avatar">MS</div>
+                        <div class="doctor-avatar">SN</div>
                         <div class="doctor-info">
                             <h4>dr. Siti Nurhaliza, Sp.OG</h4>
                             <div class="doctor-specialty">Dokter Spesialis Kandungan</div>
